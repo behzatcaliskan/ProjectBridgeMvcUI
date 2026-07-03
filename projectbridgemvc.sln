@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "projectbridgemvc", "..\..\ASP.NET Core MVC and Web API based jewelry store management system\projectbridgemvc.csproj", "{47181B63-61A0-733B-DBEC-C5D4B67622D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47181B63-61A0-733B-DBEC-C5D4B67622D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47181B63-61A0-733B-DBEC-C5D4B67622D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47181B63-61A0-733B-DBEC-C5D4B67622D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47181B63-61A0-733B-DBEC-C5D4B67622D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BE7BCD7-C1FF-4693-9411-2D6039B7107B}
+	EndGlobalSection
+EndGlobal
