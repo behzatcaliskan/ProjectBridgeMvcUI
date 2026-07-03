@@ -1,6 +1,3 @@
-# GitHub language detection düzenlemesi
-# Hazır template, Bootstrap, statik dosyalar ve Razor view dosyaları dil yüzdesinden çıkarılır.
-# Böylece ASP.NET Core / C# tabanlı projeler GitHub üzerinde daha doğru görünür.
 
 **/wwwroot/lib/** linguist-vendored
 **/wwwroot/css/** linguist-vendored
