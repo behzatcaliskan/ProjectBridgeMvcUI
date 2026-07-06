@@ -1,0 +1,31 @@
+﻿@model projectbridgemvc.Models.Supplier
+
+@{
+    ViewData["Title"] = "Edit Supplier";
+}
+
+<h2 class="mt-4">Tedarikçi Güncelle</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="SupplierId" />
+
+    <div class="mb-3">
+        <label class="form-label">Tedarikçi Adı</label>
+        <input asp-for="SupplierName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Telefon</label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Şehir</label>
+        <input asp-for="City" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+
+</form>

@@ -1,0 +1,33 @@
+﻿@model projectbridgemvc.Models.Sale
+
+@{
+    ViewData["Title"] = "Edit Sale";
+}
+
+<h2 class="mt-4">Satış Güncelle</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="SaleId" />
+
+    <div class="mb-3">
+        <label class="form-label">Ürün</label>
+        <select asp-for="ProductId" asp-items="ViewBag.Products" class="form-control">
+            <option value="">Ürün seçiniz</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Adet</label>
+        <input asp-for="Quantity" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Satış Tarihi</label>
+        <input asp-for="SaleDate" class="form-control" type="datetime-local" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+
+</form>

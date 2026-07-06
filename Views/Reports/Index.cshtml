@@ -1,0 +1,149 @@
+﻿@using projectbridgemvc.Models
+
+@{
+    ViewData["Title"] = "Reports";
+
+    var lowStockProducts = ViewBag.LowStockProducts as List<Product>;
+    var productSalesReport = ViewBag.ProductSalesReport as List<ReportProductSaleViewModel>;
+}
+
+<h2 class="mt-4 mb-4">Raporlama Paneli</h2>
+
+<div class="row mb-4">
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5>Toplam Ürün</h5>
+                <h2>@ViewBag.TotalProductCount</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5>Toplam Satış</h5>
+                <h2>@ViewBag.TotalSaleCount</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5>Toplam Gelir</h5>
+                <h2>@ViewBag.TotalRevenue ₺</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5>Az Stoklu Ürün</h5>
+                <h2>@(lowStockProducts?.Count ?? 0)</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mb-4">
+
+    <div class="col-md-4">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5>API Kategori Sayısı</h5>
+                <h2>@ViewBag.CategoryCount</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5>API Tedarikçi Sayısı</h5>
+                <h2>@ViewBag.SupplierCount</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h5>API Müşteri Sayısı</h5>
+                <h2>@ViewBag.CustomerCount</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<h4 class="mt-4">Ürüne Göre Satış Raporu</h4>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Toplam Satış Adedi</th>
+            <th>Toplam Gelir</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (productSalesReport != null && productSalesReport.Any())
+        {
+            foreach (var item in productSalesReport)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.TotalQuantity</td>
+                    <td>@item.TotalRevenue ₺</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">Satış raporu bulunamadı.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4 class="mt-4">Stokta Az Kalan Ürünler</h4>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Ürün Adı</th>
+            <th>Materyal</th>
+            <th>Renk</th>
+            <th>Fiyat</th>
+            <th>Stok</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (lowStockProducts != null && lowStockProducts.Any())
+        {
+            foreach (var item in lowStockProducts)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Material</td>
+                    <td>@item.Color</td>
+                    <td>@item.Price ₺</td>
+                    <td>@item.Stock</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">Az stoklu ürün bulunamadı.</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,29 @@
+﻿@model projectbridgemvc.Models.Customer
+
+@{
+    ViewData["Title"] = "Create Customer";
+}
+
+<h2 class="mt-4">Yeni Müşteri Ekle</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label class="form-label">Ad Soyad</label>
+        <input asp-for="FullName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Telefon</label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+
+</form>

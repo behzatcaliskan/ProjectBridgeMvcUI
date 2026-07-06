@@ -1,0 +1,248 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    var fullName = Context.Session.GetString("FullName");
+    var role = Context.Session.GetString("Role");
+
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - JewelBridge</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            width: 260px;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #1f2937, #111827);
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: white;
+            padding: 25px 18px;
+        }
+
+            .sidebar .brand {
+                font-size: 26px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #fbbf24;
+            }
+
+            .sidebar .subtitle {
+                font-size: 13px;
+                color: #d1d5db;
+                margin-bottom: 30px;
+            }
+
+            .sidebar a {
+                display: block;
+                text-decoration: none;
+                color: #e5e7eb;
+                padding: 12px 15px;
+                border-radius: 10px;
+                margin-bottom: 8px;
+                transition: 0.2s;
+                font-size: 15px;
+            }
+
+                .sidebar a:hover {
+                    background-color: #374151;
+                    color: #ffffff;
+                }
+
+                .sidebar a.active-link {
+                    background-color: #fbbf24;
+                    color: #111827;
+                    font-weight: bold;
+                }
+
+        .user-box {
+            background-color: #374151;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        .user-role {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: #fbbf24;
+            color: #111827;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 6px;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 25px;
+        }
+
+        .topbar {
+            background-color: white;
+            border-radius: 14px;
+            padding: 18px 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content-card {
+            background-color: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: white !important;
+            text-align: center;
+            font-weight: bold;
+        }
+
+            .logout-btn:hover {
+                background-color: #bb2d3b !important;
+            }
+
+        .footer-text {
+            margin-left: 260px;
+            padding: 15px 25px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        @@media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .footer-text {
+                margin-left: 0;
+            }
+
+            .topbar {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <div class="brand">JewelBridge</div>
+        <div class="subtitle">Takı Mağazası Yönetim Sistemi</div>
+
+        @if (!string.IsNullOrEmpty(role))
+        {
+            <a asp-controller="Dashboard" asp-action="Index" class="@(currentController == "Dashboard" ? "active-link" : "")">
+                Dashboard
+            </a>
+
+            <a asp-controller="Products" asp-action="Index" class="@(currentController == "Products" ? "active-link" : "")">
+                Ürünler
+            </a>
+
+            <a asp-controller="Sales" asp-action="Index" class="@(currentController == "Sales" ? "active-link" : "")">
+                Satışlar
+            </a>
+
+            <a asp-controller="Categories" asp-action="Index" class="@(currentController == "Categories" ? "active-link" : "")">
+                Kategoriler
+            </a>
+
+            <a asp-controller="Suppliers" asp-action="Index" class="@(currentController == "Suppliers" ? "active-link" : "")">
+                Tedarikçiler
+            </a>
+
+            <a asp-controller="Customers" asp-action="Index" class="@(currentController == "Customers" ? "active-link" : "")">
+                Müşteriler
+            </a>
+
+            @if (role == "Admin")
+            {
+                <a asp-controller="Reports" asp-action="Index" class="@(currentController == "Reports" ? "active-link" : "")">
+                    Raporlama
+                </a>
+            }
+
+            <div class="user-box">
+                <div>Hoş geldin</div>
+                <strong>@fullName</strong>
+                <br />
+                <span class="user-role">@role</span>
+            </div>
+
+            <a asp-controller="Account" asp-action="Logout" class="logout-btn mt-3">
+                Çıkış Yap
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Account" asp-action="Login" class="active-link">
+                Giriş Yap
+            </a>
+        }
+
+    </div>
+
+    <div class="main-content">
+
+        <div class="topbar">
+            <div>
+                <h4 class="mb-0">@ViewData["Title"]</h4>
+                <small class="text-muted">JewelBridge yönetim paneli</small>
+            </div>
+
+            @if (!string.IsNullOrEmpty(role))
+            {
+                <div>
+                    <span class="badge bg-dark">@role Panel</span>
+                </div>
+            }
+        </div>
+
+        <div class="content-card">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    <div class="footer-text">
+        &copy; 2026 - JewelBridge Takı Mağazası Yönetim Sistemi
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

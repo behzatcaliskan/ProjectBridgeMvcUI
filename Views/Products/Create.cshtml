@@ -1,0 +1,39 @@
+﻿@model projectbridgemvc.Models.Product
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h2 class="mt-4">Yeni Takı Ürünü Ekle</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label class="form-label">Ürün Adı</label>
+        <input asp-for="ProductName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Materyal</label>
+        <input asp-for="Material" class="form-control" placeholder="Altın, Gümüş, Çelik..." />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Renk</label>
+        <input asp-for="Color" class="form-control" placeholder="Gold, Silver, Rose..." />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Fiyat</label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Stok</label>
+        <input asp-for="Stock" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+
+</form>

@@ -1,0 +1,31 @@
+﻿@model projectbridgemvc.Models.Customer
+
+@{
+    ViewData["Title"] = "Edit Customer";
+}
+
+<h2 class="mt-4">Müşteri Güncelle</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="CustomerId" />
+
+    <div class="mb-3">
+        <label class="form-label">Ad Soyad</label>
+        <input asp-for="FullName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Telefon</label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+
+</form>
